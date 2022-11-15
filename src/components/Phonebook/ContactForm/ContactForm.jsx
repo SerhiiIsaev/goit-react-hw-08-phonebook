@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { getContacts } from '../../../redux/contactsSlice';
-import { addContact } from '../../../redux/AsyncRedux';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+// import { getContacts } from '../../../redux/contactsSlice';
+// import { addContact } from '../../../redux/AsyncRedux';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { toast } from 'react-toastify';
 import css from '../ContactForm/ContactForm.module.css'
 
 const nameId = nanoid();
@@ -29,30 +29,30 @@ export const ContactForm = () => {
         }
     }
 
-    const dispatch = useDispatch();
-    const {items} = useSelector(getContacts);
+    // const dispatch = useDispatch();
+    // const {items} = useSelector(getContacts);
 
-    const contactAlreadyExists = (name) => {
-        return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-    }
+    // const contactAlreadyExists = (name) => {
+    //     return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+    // }
 
-    const addContactToList = (id, name, phone) => {
-        if (contactAlreadyExists(name)) {
-            return toast.error(`${name} is already in Phonebook`)
-        }
+    // const addContactToList = (id, name, phone) => {
+    //     if (contactAlreadyExists(name)) {
+    //         return toast.error(`${name} is already in Phonebook`)
+    //     }
 
-        dispatch(addContact({id, name, phone }))
-        setName('')
-        setPhone('')
-    }
+    //     // dispatch(addContact({id, name, phone }))
+    //     setName('')
+    //     setPhone('')
+    // }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addContactToList(nanoid(), name, phone);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     addContactToList(nanoid(), name, phone);
+    // }
 
     
-    return (<form onSubmit={handleSubmit} className={css.insertWrapper}>
+    return (<form className={css.insertWrapper}>
         <label className={css.label} htmlFor={nameId}>Name</label>
         <input
             id={nameId}
