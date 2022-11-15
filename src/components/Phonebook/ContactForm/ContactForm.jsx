@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-// import { getContacts } from '../../../redux/contactsSlice';
-// import { addContact } from '../../../redux/AsyncRedux';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { getContacts } from 'redux/contacts/contactsSlice';
+import { addContact } from '../../../redux/contacts/contactsOperations';
+import { useSelector, useDispatch } from 'react-redux';
 import css from '../ContactForm/ContactForm.module.css'
-
-const nameId = nanoid();
-const phoneId = nanoid();
+// import { Loader } from '../Loader/Loader';
 
 export const ContactForm = () => {
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [number, setNumber] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,38 +19,38 @@ export const ContactForm = () => {
                 setName(value)
                 break;
             case 'contactNumber':
-                setPhone(value)
+                setNumber(value)
                 break;
             default:
                 setName('')
-                setPhone('')
+                setNumber('')
         }
     }
 
-    // const dispatch = useDispatch();
-    // const {items} = useSelector(getContacts);
+    const dispatch = useDispatch();
+    const {items, addingLoader} = useSelector(getContacts);
 
-    // const contactAlreadyExists = (name) => {
-    //     return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-    // }
+    const contactAlreadyExists = (name, number) => {
+        return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+    }
 
-    // const addContactToList = (id, name, phone) => {
-    //     if (contactAlreadyExists(name)) {
-    //         return toast.error(`${name} is already in Phonebook`)
-    //     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    //     // dispatch(addContact({id, name, phone }))
-    //     setName('')
-    //     setPhone('')
-    // }
+        if (contactAlreadyExists(name, number)) {
+            return toast.error(`${name} ${number} is already in Phonebook`)
+        }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     addContactToList(nanoid(), name, phone);
-    // }
+        dispatch(addContact({name, number}));
 
+        setName('')
+        setNumber('')
+    }
+
+    const nameId = nanoid();
+    const numberId = nanoid();
     
-    return (<form className={css.insertWrapper}>
+    return (<form onSubmit={handleSubmit} className={css.insertWrapper}>
         <label className={css.label} htmlFor={nameId}>Name</label>
         <input
             id={nameId}
@@ -65,19 +63,21 @@ export const ContactForm = () => {
             required
             placeholder='Input name'
             className={css.input} />
-        <label className={css.label} htmlFor={phoneId}>Number</label>
+        <label className={css.label} htmlFor={numberId}>Number</label>
         <input
-            id={phoneId}
+            id={numberId}
             type="tel"
             name="contactNumber"
-            value={phone}
+            value={number}
             onChange={handleChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
                 placeholder='Input number'
             className={css.input} />
-        <button type='submit' className={css.button}>Add contact</button>
+        {addingLoader ?
+            "Please wait" :
+            <button type='submit' className={css.button}>Add contact</button>
+        }
     </form>)
-    
 }
