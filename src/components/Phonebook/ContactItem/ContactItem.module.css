@@ -28,3 +28,8 @@
 .contactBtn:hover, .contactBtn:focus {
     background-color: skyblue;
 }
+
+.loader {
+    width: 10px;
+    height: 10px;
+}

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { getContacts } from 'redux/contacts/contactsSlice';
 import { addContact } from '../../../redux/contacts/contactsOperations';
 import { useSelector, useDispatch } from 'react-redux';
-import css from '../ContactForm/ContactForm.module.css'
+import styles from '../ContactForm/ContactForm.module.css'
 import { Loader } from '../Loader/Loader';
 
 export const ContactForm = () => {
@@ -50,8 +50,8 @@ export const ContactForm = () => {
     const nameId = nanoid();
     const numberId = nanoid();
     
-    return (<form onSubmit={handleSubmit} className={css.insertWrapper}>
-        <label className={css.label} htmlFor={nameId}>Name</label>
+    return (<form onSubmit={handleSubmit} className={styles.insertWrapper}>
+        <label className={styles.label} htmlFor={nameId}>Name</label>
         <input
             id={nameId}
             type="text"
@@ -62,8 +62,8 @@ export const ContactForm = () => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             placeholder='Input name'
-            className={css.input} />
-        <label className={css.label} htmlFor={numberId}>Number</label>
+            className={styles.input} />
+        <label className={styles.label} htmlFor={numberId}>Number</label>
         <input
             id={numberId}
             type="tel"
@@ -74,10 +74,10 @@ export const ContactForm = () => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
                 placeholder='Input number'
-            className={css.input} />
+            className={styles.input} />
         {addingLoader ?
             <Loader/> :
-            <button type='submit' className={css.button}>Add contact</button>
+            <button type='submit' className={styles.button}>Add contact</button>
         }
     </form>)
 }
