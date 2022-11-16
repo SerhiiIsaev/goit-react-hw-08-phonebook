@@ -14,6 +14,7 @@ export const ContactItem = ({ data }) => {
             e.target.textContent = 'Deleting...';
             e.target.setAttribute('disabled', 'true');
         }
+        dispatch(removeContact(id))
     }
     return (<li className={styles.contactItem}>
                 <p className={styles.contactText}>{name}: {number}</p>
