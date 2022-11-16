@@ -58,7 +58,7 @@ const LoginForm = () => {
             onChange={handleChange}
             required
             placeholder='your_password'
-            className={css.input} />
+            className={styles.input} />
         {!isLoading ? <button type='submit' className={styles.button}>Log In</button> : <Loader />
         }
     </form>)
