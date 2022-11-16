@@ -16,11 +16,11 @@ export const UserMenu = () => {
     }
 
     const getClassName = ({isActive}) => {
-    return isActive ? `${styles.link} ${styles.active}` : css.link;
+    return isActive ? `${styles.link} ${styles.active}` : styles.link;
 }
 
     return (
-        <nav className={css.navWrapper}>
+        <nav className={styles.navWrapper}>
             {isLoggedIn && <NavLink className={styles.link} to='/contacts'>Contacts</NavLink>}
             {isLoggedIn ?
                 <div className={styles.userWrapper}>
