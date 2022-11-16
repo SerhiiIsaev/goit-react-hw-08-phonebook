@@ -1,8 +1,8 @@
 import { ThreeCircles } from  'react-loader-spinner'
-import css from '../Loader/Loader.module.css'
+import styles from '../Loader/Loader.module.css'
 
 export const Loader = () => {
-  return <div className={css.loader}>
+  return <div className={styles.loader}>
     <ThreeCircles
   height="30"
   width="30"
@@ -19,7 +19,7 @@ export const Loader = () => {
 }
 
 export const LoaderRoute = () => {
-  return <div className={css.loaderRouter}>
+  return <div className={styles.loaderRouter}>
     <ThreeCircles
   height="80"
   width="80"

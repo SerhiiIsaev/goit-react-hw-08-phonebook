@@ -5,7 +5,7 @@ import { getContacts } from 'redux/contacts/contactsSlice';
 import { addContact } from '../../../redux/contacts/contactsOperations';
 import { useSelector, useDispatch } from 'react-redux';
 import css from '../ContactForm/ContactForm.module.css'
-// import { Loader } from '../Loader/Loader';
+import { Loader } from '../Loader/Loader';
 
 export const ContactForm = () => {
     const [name, setName] = useState('');
@@ -76,7 +76,7 @@ export const ContactForm = () => {
                 placeholder='Input number'
             className={css.input} />
         {addingLoader ?
-            "Please wait" :
+            <Loader/> :
             <button type='submit' className={css.button}>Add contact</button>
         }
     </form>)
