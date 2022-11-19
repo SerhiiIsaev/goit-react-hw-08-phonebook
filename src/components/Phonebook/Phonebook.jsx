@@ -3,7 +3,7 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import css from './Phonebook.module.css'
 
-export const Phonebook = () => {
+const Phonebook = () => {
     return <>
         <h1 className={css.title}>Phonebook</h1>
         <ContactForm />
@@ -13,3 +13,5 @@ export const Phonebook = () => {
         <ContactList />
     </>
 }
+
+export default Phonebook

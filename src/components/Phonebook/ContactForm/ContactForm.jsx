@@ -38,7 +38,7 @@ export const ContactForm = () => {
         e.preventDefault();
 
         if (contactAlreadyExists(name, number)) {
-            return toast.error(`${name} ${number} is already in Phonebook`)
+            return toast.error(`${name} is already in Phonebook`)
         }
 
         dispatch(addContact({name, number}));

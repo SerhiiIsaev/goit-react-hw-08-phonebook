@@ -9,7 +9,7 @@ export const ContactList = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchContacts());
+        dispatch(fetchContacts())
     }, [dispatch]);
 
     const {items, error, isLoading} = useSelector(getContacts);
@@ -17,6 +17,7 @@ export const ContactList = () => {
 
     const getFilteredContacts = () => {
         if (!filter) {
+            // console.log("1", items)
             return items;
         }
         return items.filter(({name}) => name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
