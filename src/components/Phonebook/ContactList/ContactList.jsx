@@ -17,7 +17,6 @@ export const ContactList = () => {
 
     const getFilteredContacts = () => {
         if (!filter) {
-            // console.log("1", items)
             return items;
         }
         return items.filter(({name}) => name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
